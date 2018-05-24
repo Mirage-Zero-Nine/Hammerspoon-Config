@@ -6,53 +6,37 @@ local geometry = require 'hs.geometry'
 local drawing = require 'hs.drawing'
 local mouse = require 'hs.mouse'
 
-window.animationDuration = 0
+local moveWindow = {'ctrl', 'cmd'}
 
-local moveMouse = {'cmd'}
+window.animationDuration = 0
 
 -- Snapback
 hotkey.bind(hyperSize, '/', function() snapback() end)
 
 -- Function that can be used in init.lua
-function move_mouse()
-    -- Move mouse between monitors ⌘ + 1 / 2 
-    hotkey.bind(moveMouse, '2', function() moveMouseOneScreen('next') end)
-    hotkey.bind(moveMouse, '1', function() moveMouseOneScreen('previous') end)
+function move_window()
+    -- Move window between monitors: ⌘ + ^ + 1 / 2 
+    hotkey.bind(moveWindow, '2', function() moveWindowOneScreen('next') end)
+    hotkey.bind(moveWindow, '1', function() moveWindowOneScreen('previous') end)
 end
 
 -- Local Functions
-local mouseState = {}
-function moveMouseOneScreen(type)
-    local screen = mouse.getCurrentScreen()
+function moveWindowOneScreen(type)
+    local win = getGoodFocusedWindow(true)
+    if not win then return end
 
-    local toScreen = nil
+    local screen = nil
     if type == 'next' then
-        toScreen = screen:next()
+        hs.alert.show("Next Monitor")
+        screen = win:screen():next()
     elseif type == 'previous' then
-        toScreen = screen:previous()
+        hs.alert.show("Prev Monitor")
+        screen = win:screen():previous()
     else
         return
     end
 
-    local rect = screen:fullFrame()
-    local toRect = toScreen:fullFrame()
-
-    local pos = mouse.getRelativePosition()
-    local toPos = nil
-
-    local toScreenId = toScreen:id()
-    if mouseState[toScreenId] then
-        toPos = mouseState[toScreenId]
-    else
-        local x = pos.x / rect.w * toRect.w
-        local y = pos.y / rect.h * toRect.h
-        toPos = geometry.point(x, y)
-    end
- 
-    mouse.setRelativePosition(toPos, toScreen)
-    mouseState[screen:id()] = pos
-
-    mouseHighlight()
+    win:moveToScreen(screen)
 end
 
 local snapbackStates = {} 
@@ -90,29 +74,9 @@ end
 local mouseCircle = nil
 local mouseCircleTimer = nil
 
-function mouseHighlight()
-    -- Delete an existing highlight if it exists
-    if mouseCircle then
-        mouseCircle:delete()
-        if mouseCircleTimer then
-            mouseCircleTimer:stop()
-        end
-    end
-    -- Get the current co-ordinates of the mouse pointer
-    mousepoint = mouse.getAbsolutePosition()
-    -- Prepare a big red circle around the mouse pointer
-    mouseCircle = drawing.circle(geometry.rect(mousepoint.x - 40, mousepoint.y - 40, 80, 80))
-    mouseCircle:setStrokeColor({["red"] = 1, ["blue"] = 0, ["green"] = 0, ["alpha"] = 1})
-    mouseCircle:setFill(false)
-    mouseCircle:setStrokeWidth(5)
-    mouseCircle:show()
-
-    -- Set a timer to delete the circle after n seconds
-    mouseCircleTimer = hs.timer.doAfter(.3, function() mouseCircle:delete() end)
-end
-
 --- https://gist.github.com/josephholsten/1e17c7418d9d8ec0e783
 --- hs.window:moveToScreen(screen)
+--- Method
 --- move window to the the given screen, keeping the relative proportion and position window to the original screen.
 --- Example: win:moveToScreen(win:screen():next()) -- move window to next screen
 function hs.window:moveToScreen(nextScreen)

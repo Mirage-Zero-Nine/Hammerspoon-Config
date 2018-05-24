@@ -10,9 +10,6 @@ local moveWindow = {'ctrl', 'cmd'}
 
 window.animationDuration = 0
 
--- Snapback --
-hotkey.bind(hyperSize, '/', function() snapback() end)
-
 -- Function that can be used in init.lua
 function move_window()
     -- Move window between monitors: ⌘ + ^ + 1 / 2 
@@ -37,20 +34,6 @@ function moveWindowOneScreen(type)
     end
 
     win:moveToScreen(screen)
-end
-
-local snapbackStates = {} 
-function snapback()
-    local win = getGoodFocusedWindow()
-    if not win then return end
-
-    local id = win:id()
-    local state = win:frame()
-    local prevState = snapbackStates[id]
-    if prevState then
-        win:setFrame(prevState)
-    end
-    snapbackStates[id] = state
 end
 
 function getGoodFocusedWindow(isNoFull)

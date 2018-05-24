@@ -17,13 +17,13 @@ This repository contains some basic configurations that used in Hammerspoon.
 ### MoveMouseBetweenScreen.lua
 
 - Move mouse to other screen by keystroke.
-- Default hotkey is `CMD + 1/2`.
+- Default hotkey is `CMD + 1` or `CMD + 2`.
 - Can be edited in file.
 
 ### MoveWindowBetweenScreen.lua
 
 - Move application window between screens.
-- Default hotkey is `CMD + Ctrl + 1/2`.
+- Default hotkey is `CMD + 1` or `CMD + 2`.
 - Can be edited in file.
 
 ### ResizeWindow.lua

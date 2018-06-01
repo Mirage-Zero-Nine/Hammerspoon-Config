@@ -26,11 +26,7 @@ This repository contains some basic configurations that used in Hammerspoon.
 - Default hotkey is `CMD + 1` or `CMD + 2`.
 - Can be edited in file.
 
-### ResizeWindow.lua
+### AutoSetWindow.lua
 
-- Can edit window size of current application window.
-
-### SplitWindow.lua
-
-- Can edit window size of current application window.
-- Move window to left of screen, right of screen, upper part of screen, lower part of screen.
+- Can automatically set window's position and size. (center, left-third, etc.)
+- Will resize window when it is currently focused.

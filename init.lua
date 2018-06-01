@@ -3,8 +3,7 @@
 require "InputSwitch"   
 require "MoveMouseBetweenScreen"
 require "MoveWindowBetweenScreen"
-require "ResizeWindow"
-require "SplitWindow"
+require "AutoSetWindow"
 
 -- Start function written in Language.lua
 
@@ -17,8 +16,5 @@ move_window()
 -- MoveMouseBetweenScreen
 move_mouse()
 
--- ResizeWindow
-resize_window()
-
--- SplitWindow
-split_window()
+-- AutoSetWindow
+start_auto_set_window_size()

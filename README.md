@@ -7,6 +7,10 @@ This repository contains some basic configurations that used in Hammerspoon.
 
 [What's Hammerspoon](https://www.hammerspoon.org)
 
+## How to install
+
+Download all `.lua` files and put them into Hammerspoon configuration folder. Reload configiration in Hammerspoon.
+
 ## Brief Configuration Introduction
 
 ### InputSwitch.lua

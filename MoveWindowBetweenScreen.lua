@@ -6,15 +6,16 @@ local geometry = require 'hs.geometry'
 local drawing = require 'hs.drawing'
 local mouse = require 'hs.mouse'
 
-local moveWindow = {'ctrl', 'cmd'}
+local moveWindow = {'cmd', 'ctrl', 'shift'}
 
 window.animationDuration = 0
 
 -- Function that can be used in init.lua
 function move_window()
-    -- Move window between monitors: ⌘ + ^ + 1 / 2 
-    hotkey.bind(moveWindow, '2', function() moveWindowOneScreen('next') end)
-    hotkey.bind(moveWindow, '1', function() moveWindowOneScreen('previous') end)
+   
+    -- Move window between monitors: ⌘ + ^ + ⇧ + e 
+    hotkey.bind(moveWindow, 'e', function() moveWindowOneScreen('next') end)
+    -- hotkey.bind(moveWindow, '1', function() moveWindowOneScreen('previous') end)
 end
 
 -- Local Functions
@@ -57,11 +58,6 @@ end
 local mouseCircle = nil
 local mouseCircleTimer = nil
 
---- https://gist.github.com/josephholsten/1e17c7418d9d8ec0e783
---- hs.window:moveToScreen(screen)
---- Method
---- move window to the the given screen, keeping the relative proportion and position window to the original screen.
---- Example: win:moveToScreen(win:screen():next()) -- move window to next screen
 function hs.window:moveToScreen(nextScreen)
     local currentFrame = self:frame()
     local screenFrame = self:screen():frame()

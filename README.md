@@ -13,28 +13,22 @@ Download all `.lua` files and put them into Hammerspoon configuration folder. Re
 
 ## Brief Configuration Introduction
 
-### InputSwitch.lua
+### : automatically switch input source between applications
 
-- Can automatically switch input source between applications.
-
-This `.lua` file can automatically switch input source based on current application window. For instance, in an IDE window such as Intellij IDEA, input source will be focused in English. And in other window, for instance, iMessage, a different language input can be focused alternatively such as Chinese. 
+Automatically switch input source based on current application window. For instance, in an IDE window such as Intellij IDEA, input source will be focused in English. And in other window, for instance, iMessage, a different language input can be focused alternatively such as Chinese. 
 
 The specific input source can be edited in `InputSwitch.lua`.
 
-### MoveMouseBetweenScreen.lua
+### MoveMouseBetweenScreen.lua: switch mouse focus between screen by hotkey
 
-- Switch mouse focus between screen by hotkey
+Switching **mouse** between monitor. The default hotkey can be found in file.
 
-This `.lua` file is made for switching mouse between monitor. The default hotkey can be found in file.
+### MoveWindowBetweenScreen.lua: move application window between screens
 
-### MoveWindowBetweenScreen.lua
+Switching **application** window between monitor, similar to previous moving mouse file.
 
-- Move application window between screens.
+### AutoSetWindow.lua: automatically set application window to a specific position and layout
 
-This `.lua` file is for application window to switch between monitor, similar to previous moving mouse file.
+Automatically assign window size and position when application window is focused at current display. For instance, when 1Password window is focused, it will automatically place this application's window into right side of current monitor, with 2/3 proportion of current monitor space taken. 
 
-### AutoSetWindow.lua
-
-- Automatically place specific application window when it is focused.
-
-This `.lua` configuration is for automatically set window size when specific window is currently focused. For instance, when switch to 1Password, it will automatically place this application's window into right side of current monitor, with 2/3 proportion of current monitor space taken.
+Application and position can be modified in `AutoSetWindow.lua` file.

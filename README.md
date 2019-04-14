@@ -13,7 +13,7 @@ Download all `.lua` files and put them into Hammerspoon configuration folder. Re
 
 ## Brief Configuration Introduction
 
-### : automatically switch input source between applications
+### InputSwitch.lua: automatically switch input source between applications
 
 Automatically switch input source based on current application window. For instance, in an IDE window such as Intellij IDEA, input source will be focused in English. And in other window, for instance, iMessage, a different language input can be focused alternatively such as Chinese. 
 
